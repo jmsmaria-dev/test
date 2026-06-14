@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Math Rush Arena</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app" data-theme="standard">
+      <section class="setup-view" id="setupView">
+        <div class="setup-main">
+          <p class="eyebrow">9 x 9 border set challenge</p>
+          <h1>Math Rush Arena</h1>
+          <p class="intro">
+            Pick a theme, choose the number of players and rounds, then race to make
+            the target with <strong>A x B + C</strong> or <strong>A x B - C</strong>.
+          </p>
+
+          <div class="setup-grid">
+            <fieldset class="control-panel">
+              <legend>Theme</legend>
+              <div class="theme-options" id="themeOptions"></div>
+            </fieldset>
+
+            <fieldset class="control-panel">
+              <legend>Players</legend>
+              <div class="segmented" id="playerOptions">
+                <button type="button" data-players="1">1</button>
+                <button type="button" data-players="2" class="active">2</button>
+                <button type="button" data-players="3">3</button>
+                <button type="button" data-players="4">4</button>
+              </div>
+            </fieldset>
+
+            <fieldset class="control-panel">
+              <legend>Rounds</legend>
+              <div class="segmented" id="roundOptions">
+                <button type="button" data-rounds="10" class="active">10</button>
+                <button type="button" data-rounds="20">20</button>
+                <button type="button" data-rounds="30">30</button>
+              </div>
+            </fieldset>
+
+            <fieldset class="control-panel">
+              <legend>Level</legend>
+              <div class="segmented difficulty-options" id="difficultyOptions">
+                <button type="button" data-difficulty="easy">Easy<br><span>60s</span></button>
+                <button type="button" data-difficulty="medium" class="active">Medium<br><span>40s</span></button>
+                <button type="button" data-difficulty="hard">Hard<br><span>20s</span></button>
+              </div>
+            </fieldset>
+          </div>
+
+          <fieldset class="control-panel player-name-panel">
+            <legend>Player Names</legend>
+            <div class="name-grid" id="playerNameInputs">
+              <label>
+                <span>Player 1</span>
+                <input type="text" value="Player 1" maxlength="16" data-player-name="0">
+              </label>
+              <label>
+                <span>Player 2</span>
+                <input type="text" value="Player 2" maxlength="16" data-player-name="1">
+              </label>
+              <label class="inactive">
+                <span>Player 3</span>
+                <input type="text" value="Player 3" maxlength="16" data-player-name="2">
+              </label>
+              <label class="inactive">
+                <span>Player 4</span>
+                <input type="text" value="Player 4" maxlength="16" data-player-name="3">
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="setup-actions">
+            <button class="primary-action" id="startGame" type="button">Start Game</button>
+          </div>
+        </div>
+
+        <aside class="preview-card" aria-label="Board preview">
+          <div class="preview-topline">
+            <span>Board Preview</span>
+            <button class="icon-button" id="previewBoard" type="button" title="Generate preview board" aria-label="Generate preview board">New</button>
+          </div>
+          <div class="mini-board" id="previewGrid"></div>
+          <p class="preview-note">Every border color contains numbers 1 through 9 once.</p>
+        </aside>
+      </section>
+
+      <section class="game-view hidden" id="gameView">
+        <header class="hud">
+          <div>
+            <p class="hud-label">Target</p>
+            <div class="target" id="targetNumber">30</div>
+          </div>
+          <div>
+            <p class="hud-label">Round</p>
+            <div class="hud-value"><span id="currentRound">1</span>/<span id="totalRounds">10</span></div>
+          </div>
+          <div>
+            <p class="hud-label">Timer</p>
+            <div class="hud-value" id="timer">30</div>
+          </div>
+          <div class="equation" id="equation">Select 3 tiles</div>
+          <button class="secondary-action" id="newBoard" type="button">New Board</button>
+          <button class="secondary-action" id="quitGame" type="button">Quit</button>
+        </header>
+
+        <div class="play-area">
+          <aside class="scoreboard" id="scoreboard"></aside>
+          <div class="board-wrap">
+            <div class="status-line" id="statusLine">Player 1, choose your first number.</div>
+            <div class="board" id="gameBoard"></div>
+          </div>
+        </div>
+      </section>
+
+      <dialog class="result-dialog" id="resultDialog">
+        <h2 id="resultTitle">Game Over</h2>
+        <p id="resultSummary"></p>
+        <div class="dialog-actions">
+          <button class="secondary-action" id="closeResult" type="button">Theme Select</button>
+          <button class="primary-action" id="rematch" type="button">Rematch</button>
+        </div>
+      </dialog>
+    </main>
+
+    <script src="game.js"></script>
+  </body>
+</html>
